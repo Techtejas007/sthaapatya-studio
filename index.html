@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sthaapatya Studio | Architecture, Interiors & Environmental Consultancy</title>
+<meta name="description" content="Sthaapatya Studio - Architecture, Interiors & Environmental Consultancy based in Pune and Nashik. Green building, IGBC, GRIHA certified projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #c9b99a;
+    --sand-light: #e8ddd0;
+    --sand-pale: #f4efe8;
+    --earth: #7a6248;
+    --earth-dark: #4a3a28;
+    --warm-white: #faf7f2;
+    --charcoal: #2c2418;
+    --green: #5a7a52;
+    --accent: #8b6914;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--warm-white);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    padding: 18px 5%;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(250,247,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,185,154,0.3);
+    transition: all 0.3s;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 500; color: var(--earth-dark);
+    letter-spacing: 0.05em; text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--earth);
+    text-decoration: none; transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -3px; left: 0;
+    width: 0; height: 1px; background: var(--accent);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    background: var(--earth-dark); color: var(--sand-pale) !important;
+    padding: 8px 20px; border-radius: 2px;
+    font-size: 0.75rem !important;
+  }
+  .nav-cta::after { display: none !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 1.5px; background: var(--earth-dark); transition: all 0.3s; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding-top: 80px;
+    overflow: hidden;
+  }
+  .hero-left {
+    padding: 6% 5% 6% 7%;
+    animation: fadeUp 1.2s ease both;
+  }
+  .hero-tagline {
+    font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--green); font-weight: 500; margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-tagline::before {
+    content: ''; display: block; width: 30px; height: 1px; background: var(--green);
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 300; line-height: 1.1;
+    color: var(--earth-dark); margin-bottom: 1.2rem;
+  }
+  .hero-title em { font-style: italic; color: var(--accent); }
+  .hero-sub {
+    font-size: 0.95rem; font-weight: 300; color: var(--earth);
+    line-height: 1.8; max-width: 480px; margin-bottom: 2.5rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--earth-dark); color: var(--sand-pale);
+    padding: 14px 32px; font-size: 0.8rem; letter-spacing: 0.15em;
+    text-transform: uppercase; text-decoration: none;
+    transition: all 0.3s; border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1px solid var(--earth); color: var(--earth);
+    padding: 14px 32px; font-size: 0.8rem; letter-spacing: 0.15em;
+    text-transform: uppercase; text-decoration: none;
+    transition: all 0.3s; background: transparent; cursor: pointer;
+  }
+  .btn-outline:hover { background: var(--earth); color: var(--warm-white); }
+  .hero-right {
+    height: 100vh; position: relative; overflow: hidden;
+    animation: fadeIn 1.5s ease both 0.3s;
+  }
+  .hero-bg {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: sepia(20%) brightness(0.95);
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(201,185,154,0.3) 0%, transparent 60%);
+  }
+  .hero-stats {
+    position: absolute; bottom: 40px; left: 30px;
+    display: flex; gap: 2rem;
+  }
+  .stat {
+    background: rgba(250,247,242,0.9); backdrop-filter: blur(8px);
+    padding: 16px 20px; border-left: 3px solid var(--accent);
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 500; color: var(--earth-dark);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--earth); margin-top: 4px; }
+
+  /* ── WAVE DIVIDER ── */
+  .wave { line-height: 0; }
+  .wave svg { display: block; width: 100%; }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--sand-pale);
+    padding: 100px 7%;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .about-img-wrap { position: relative; }
+  .about-img-main {
+    width: 100%; height: 520px; object-fit: cover;
+    display: block;
+  }
+  .about-img-accent {
+    position: absolute; bottom: -30px; right: -30px;
+    width: 200px; height: 200px; object-fit: cover;
+    border: 6px solid var(--warm-white);
+  }
+  .about-badge {
+    position: absolute; top: 30px; left: -20px;
+    background: var(--accent); color: white;
+    padding: 12px 18px; font-size: 0.7rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    writing-mode: vertical-rl; text-orientation: mixed;
+  }
+  .section-label {
+    font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--green); font-weight: 500; margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::before { content: ''; width: 25px; height: 1px; background: var(--green); }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 400; line-height: 1.2;
+    color: var(--earth-dark); margin-bottom: 1.5rem;
+  }
+  .section-body {
+    font-size: 0.95rem; font-weight: 300; color: var(--earth);
+    line-height: 1.9; margin-bottom: 1.2rem;
+  }
+  .about-pillars {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin-top: 2rem;
+  }
+  .pillar {
+    padding: 16px; border: 1px solid rgba(201,185,154,0.4);
+    background: var(--warm-white);
+  }
+  .pillar-icon { font-size: 1.4rem; margin-bottom: 6px; }
+  .pillar h4 { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--earth-dark); margin-bottom: 4px; }
+  .pillar p { font-size: 0.8rem; color: var(--earth); line-height: 1.5; }
+
+  /* ── SERVICES ── */
+  #services {
+    padding: 100px 7%;
+    background: var(--warm-white);
+  }
+  .services-header { text-align: center; margin-bottom: 60px; }
+  .services-header .section-label { justify-content: center; }
+  .services-header .section-label::before { display: none; }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; background: rgba(201,185,154,0.3);
+  }
+  .service-card {
+    background: var(--warm-white);
+    padding: 50px 36px;
+    transition: all 0.4s;
+    position: relative; overflow: hidden;
+    cursor: default;
+  }
+  .service-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 3px; background: var(--accent);
+    transition: width 0.4s;
+  }
+  .service-card:hover { background: var(--sand-pale); transform: translateY(-4px); }
+  .service-card:hover::before { width: 100%; }
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem; font-weight: 300; color: rgba(201,185,154,0.5);
+    line-height: 1; margin-bottom: 1rem;
+  }
+  .service-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .service-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 500; color: var(--earth-dark);
+    margin-bottom: 1rem;
+  }
+  .service-desc { font-size: 0.88rem; line-height: 1.8; color: var(--earth); font-weight: 300; }
+  .service-list { list-style: none; margin-top: 1rem; }
+  .service-list li {
+    font-size: 0.8rem; color: var(--earth); padding: 5px 0;
+    border-bottom: 1px solid rgba(201,185,154,0.3);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .service-list li::before { content: '→'; color: var(--accent); font-size: 0.75rem; }
+
+  /* ── PROJECTS ── */
+  #projects {
+    padding: 100px 7%;
+    background: var(--sand-pale);
+  }
+  .projects-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 50px; }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 20px;
+  }
+  .project-card {
+    position: relative; overflow: hidden; cursor: pointer;
+    background: var(--sand);
+  }
+  .project-card:first-child {
+    grid-column: 1 / 3;
+    grid-row: 1;
+  }
+  .project-card img {
+    width: 100%; height: 100%; min-height: 280px;
+    object-fit: cover; display: block;
+    transition: transform 0.6s ease, filter 0.4s;
+    filter: sepia(15%);
+  }
+  .project-card:hover img { transform: scale(1.04); filter: sepia(0%); }
+  .project-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(42,26,12,0.85) 0%, transparent 55%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 28px;
+  }
+  .project-tag {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--sand); margin-bottom: 6px;
+    background: var(--accent); display: inline-block; padding: 3px 10px;
+    width: fit-content;
+  }
+  .project-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 400; color: white;
+  }
+  .project-loc { font-size: 0.78rem; color: rgba(255,255,255,0.7); margin-top: 4px; }
+
+  /* ── GREEN SECTION ── */
+  #green {
+    background: var(--earth-dark);
+    padding: 100px 7%;
+    color: var(--sand-light);
+    position: relative; overflow: hidden;
+  }
+  #green::before {
+    content: 'GREEN';
+    position: absolute; right: -40px; top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12rem; font-weight: 600;
+    color: rgba(255,255,255,0.03); letter-spacing: 0.1em;
+    pointer-events: none;
+  }
+  .green-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .green-content .section-label { color: var(--sand); }
+  .green-content .section-label::before { background: var(--sand); }
+  .green-content .section-title { color: var(--sand-light); }
+  .green-content .section-body { color: rgba(232,221,208,0.75); }
+  .green-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: rgba(255,255,255,0.1);
+  }
+  .g-stat {
+    background: rgba(255,255,255,0.04);
+    padding: 30px; text-align: center;
+    transition: background 0.3s;
+  }
+  .g-stat:hover { background: rgba(255,255,255,0.08); }
+  .g-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 300; color: var(--sand);
+  }
+  .g-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(232,221,208,0.6); margin-top: 6px; }
+  .cert-badges { display: flex; gap: 12px; margin-top: 2rem; flex-wrap: wrap; }
+  .cert-badge {
+    border: 1px solid rgba(201,185,154,0.4); color: var(--sand);
+    padding: 8px 16px; font-size: 0.7rem; letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* ── FOUNDER ── */
+  #founder {
+    padding: 100px 7%;
+    background: var(--warm-white);
+    display: grid; grid-template-columns: 380px 1fr;
+    gap: 80px; align-items: start;
+  }
+  .founder-img-wrap { position: relative; }
+  .founder-img {
+    width: 100%; height: 480px; object-fit: cover; object-position: top;
+    display: block; filter: sepia(10%);
+  }
+  .founder-frame {
+    position: absolute; inset: 15px -15px -15px 15px;
+    border: 2px solid var(--sand); z-index: -1;
+  }
+  .founder-quote {
+    position: absolute; bottom: -20px; left: 20px; right: -20px;
+    background: var(--earth-dark); color: var(--sand-light);
+    padding: 20px; font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; font-style: italic; line-height: 1.6;
+  }
+  .founder-info { padding-top: 20px; }
+  .founder-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 400; color: var(--earth-dark);
+    margin-bottom: 0.3rem;
+  }
+  .founder-title { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; }
+  .founder-bio { font-size: 0.95rem; font-weight: 300; color: var(--earth); line-height: 1.9; margin-bottom: 1rem; }
+  .edu-list { list-style: none; margin-top: 1.5rem; }
+  .edu-list li {
+    padding: 12px 0; border-bottom: 1px solid rgba(201,185,154,0.3);
+    font-size: 0.88rem; color: var(--earth);
+    display: flex; gap: 12px; align-items: baseline;
+  }
+  .edu-year { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--accent); min-width: 50px; }
+
+  /* ── ENQUIRY ── */
+  #enquiry {
+    background: var(--sand-pale);
+    padding: 100px 7%;
+  }
+  .enquiry-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: start;
+  }
+  .enquiry-form-wrap {}
+  .form-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; color: var(--earth-dark); margin-bottom: 2rem;
+  }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label { display: block; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--earth); margin-bottom: 6px; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; padding: 12px 16px;
+    background: var(--warm-white); border: 1px solid rgba(201,185,154,0.5);
+    font-family: 'Jost', sans-serif; font-size: 0.9rem; color: var(--charcoal);
+    outline: none; transition: border-color 0.3s;
+    -webkit-appearance: none; appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--accent); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-success {
+    display: none; background: var(--green);
+    color: white; padding: 16px; text-align: center;
+    font-size: 0.9rem; margin-top: 1rem;
+  }
+  .contact-info { padding-top: 60px; }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    margin-bottom: 2rem; padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(201,185,154,0.4);
+  }
+  .contact-icon { font-size: 1.5rem; margin-top: 2px; }
+  .contact-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--earth); margin-bottom: 4px; }
+  .contact-value { font-size: 1rem; color: var(--earth-dark); font-weight: 400; }
+  .contact-value a { color: inherit; text-decoration: none; }
+  .whatsapp-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #25D366; color: white;
+    padding: 14px 28px; font-size: 0.85rem; font-weight: 500;
+    text-decoration: none; transition: all 0.3s;
+    margin-top: 1rem;
+  }
+  .whatsapp-btn:hover { background: #128C7E; transform: translateY(-2px); }
+  .whatsapp-btn svg { width: 20px; height: 20px; fill: white; }
+  .map-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--accent); font-size: 0.82rem; text-decoration: none;
+    margin-top: 0.5rem; letter-spacing: 0.08em;
+    transition: gap 0.3s;
+  }
+  .map-link:hover { gap: 12px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal);
+    padding: 60px 7% 30px;
+    color: rgba(201,185,154,0.7);
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px; margin-bottom: 50px;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; color: var(--sand-light); margin-bottom: 1rem;
+  }
+  .footer-tagline { font-size: 0.85rem; line-height: 1.7; margin-bottom: 1.5rem; }
+  .footer-h { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sand); margin-bottom: 1.2rem; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 0.8rem; }
+  .footer-links a { color: rgba(201,185,154,0.7); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--sand-light); }
+  .footer-bottom {
+    border-top: 1px solid rgba(201,185,154,0.15);
+    padding-top: 25px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-copy { font-size: 0.78rem; }
+  .footer-social { display: flex; gap: 1rem; }
+  .social-link {
+    width: 36px; height: 36px; border: 1px solid rgba(201,185,154,0.3);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(201,185,154,0.7); text-decoration: none;
+    font-size: 0.7rem; transition: all 0.3s;
+  }
+  .social-link:hover { background: var(--accent); border-color: var(--accent); color: white; }
+
+  /* ── WHATSAPP FLOAT ── */
+  .wa-float {
+    position: fixed; bottom: 28px; right: 28px; z-index: 999;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    text-decoration: none; transition: all 0.3s;
+    animation: pulse 2s infinite;
+  }
+  .wa-float:hover { transform: scale(1.1); background: #128C7E; }
+  .wa-float svg { width: 28px; height: 28px; fill: white; }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+    50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7); }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { height: 50vh; }
+    #about { grid-template-columns: 1fr; gap: 50px; }
+    .about-img-wrap { display: none; }
+    .services-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr 1fr; }
+    .project-card:first-child { grid-column: 1 / -1; }
+    .green-inner { grid-template-columns: 1fr; gap: 40px; }
+    #founder { grid-template-columns: 1fr; gap: 60px; }
+    .founder-img-wrap { max-width: 320px; }
+    .enquiry-inner { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+    .nav-links { display: none; flex-direction: column; position: fixed; top: 70px; left: 0; right: 0; background: var(--warm-white); padding: 2rem; gap: 1.5rem; border-bottom: 1px solid var(--sand-light); }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+    .projects-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card:first-child { grid-column: 1; }
+    #hero { padding-top: 70px; }
+    .hero-left { padding: 8% 5%; }
+    .stat-num { font-size: 1.5rem; }
+    .hero-stats { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Sthaapatya Studio</a>
+  <ul class="nav-links" id="navlinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#green">Green Building</a></li>
+    <li><a href="#founder">Founder</a></li>
+    <li><a href="#enquiry" class="nav-cta">Get In Touch</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-tagline">Architecture & Environmental Design</p>
+    <h1 class="hero-title">
+      Spaces that<br><em>breathe</em> &amp;<br>inspire.
+    </h1>
+    <p class="hero-sub">
+      An architectural and environmental consultancy bringing sustainable, purposeful design to residential, commercial and green-certified projects across India.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View Our Work</a>
+      <a href="#enquiry" class="btn-outline">Start a Project</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <!-- Using a warm architectural gradient as hero visual -->
+    <div style="width:100%;height:100%;background:linear-gradient(135deg,#c9b99a 0%,#8b6948 35%,#4a3a28 100%);position:relative;display:flex;align-items:center;justify-content:center;">
+      <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" style="width:70%;height:70%;opacity:0.15;">
+        <rect x="100" y="200" width="300" height="200" fill="none" stroke="white" stroke-width="2"/>
+        <polygon points="100,200 250,80 400,200" fill="none" stroke="white" stroke-width="2"/>
+        <rect x="200" y="300" width="100" height="100" fill="none" stroke="white" stroke-width="1.5"/>
+        <line x1="100" y1="400" x2="400" y2="400" stroke="white" stroke-width="2"/>
+        <rect x="140" y="250" width="60" height="60" fill="none" stroke="white" stroke-width="1"/>
+        <rect x="300" y="250" width="60" height="60" fill="none" stroke="white" stroke-width="1"/>
+      </svg>
+      <div style="position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(to top,rgba(0,0,0,0.3),transparent);"></div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">6+</div><div class="stat-label">Years Experience</div></div>
+      <div class="stat"><div class="stat-num">2</div><div class="stat-label">Offices</div></div>
+      <div class="stat"><div class="stat-num">IGBC</div><div class="stat-label">Certified</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-img-wrap reveal">
+    <div style="width:100%;height:520px;background:linear-gradient(160deg,#c9b99a,#7a6248,#4a3a28);display:flex;align-items:center;justify-content:center;">
+      <svg viewBox="0 0 300 300" style="width:50%;opacity:0.2;" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="150" cy="150" r="120" fill="none" stroke="white" stroke-width="1.5"/>
+        <circle cx="150" cy="150" r="80" fill="none" stroke="white" stroke-width="1"/>
+        <line x1="30" y1="150" x2="270" y2="150" stroke="white" stroke-width="1"/>
+        <line x1="150" y1="30" x2="150" y2="270" stroke="white" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="about-badge">Since 2020</div>
+  </div>
+  <div class="reveal">
+    <p class="section-label">Who We Are</p>
+    <h2 class="section-title">Designing with purpose, building with conscience.</h2>
+    <p class="section-body">
+      Sthaapatya Studio is an architectural and environmental consultancy venturing into the green building and development market. With ongoing experience in architecture, interiors and environmental design, we operate from offices in <strong>Pune and Nashik</strong>.
+    </p>
+    <p class="section-body">
+      We are passionate about the environment and strive to build a society which not only thinks Green but also lives Green. We deliver education and guidance to builders, developers, architects, designers, engineers, consultants, and contractors on green building practices, strategies, and implementation.
+    </p>
+    <div class="about-pillars">
+      <div class="pillar">
+        <div class="pillar-icon">🏛</div>
+        <h4>Architecture</h4>
+        <p>New buildings with sustainable, interpretive design approach.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🪴</div>
+        <h4>Interiors</h4>
+        <p>Creative, energy-driven spaces that engage visitors.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🌿</div>
+        <h4>Green Building</h4>
+        <p>IGBC, GRIHA certified consultancy & rating services.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🪑</div>
+        <h4>Multifunctional Furniture</h4>
+        <p>Smart, space-saving solutions for modern living.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <p class="section-label">What We Offer</p>
+    <h2 class="section-title">Our Services</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-num">01</div>
+      <div class="service-icon">🏗</div>
+      <h3 class="service-title">Architecture & Design</h3>
+      <p class="service-desc">Every design is underpinned by clarity of thought and consistency of approach, reflecting the unique mission and vision of our clients.</p>
+      <ul class="service-list">
+        <li>Residential Bungalows & Apartments</li>
+        <li>Commercial Buildings</li>
+        <li>Sustainable & Passive Design</li>
+        <li>Design & Construction</li>
+      </ul>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">02</div>
+      <div class="service-icon">🛋</div>
+      <h3 class="service-title">Interior Design</h3>
+      <p class="service-desc">Highly imaginative design solutions that satisfy human, physical, technical and functional needs while encapsulating our clients' brand.</p>
+      <ul class="service-list">
+        <li>Residential Apartments</li>
+        <li>Restaurants & Commercial</li>
+        <li>Complete Project Execution</li>
+        <li>Space Planning</li>
+      </ul>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">03</div>
+      <div class="service-icon">🌱</div>
+      <h3 class="service-title">Green Building Consultancy</h3>
+      <p class="service-desc">Guiding builders, developers and architects on sustainable practices, strategies, implementation and certifications for a greener tomorrow.</p>
+      <ul class="service-list">
+        <li>IGBC Green Homes & Schools</li>
+        <li>GRIHA Certification</li>
+        <li>Energy & Water Audit</li>
+        <li>Environmental Planning</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects-header reveal">
+    <div>
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-title">Selected Projects</h2>
+    </div>
+    <a href="#enquiry" class="btn-outline" style="white-space:nowrap;">Start Your Project →</a>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div style="width:100%;height:360px;background:linear-gradient(135deg,#5a7a52,#3a5a42);display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" style="width:60%;opacity:0.3;">
+          <rect x="20" y="80" width="360" height="120" fill="none" stroke="white" stroke-width="2"/>
+          <polygon points="20,80 200,10 380,80" fill="none" stroke="white" stroke-width="2"/>
+          <rect x="160" y="130" width="80" height="70" fill="none" stroke="white" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="project-overlay">
+        <span class="project-tag">Green Building</span>
+        <h3 class="project-name">IGBC Green Homes — Platinum</h3>
+        <p class="project-loc">NIBM Road, Pune · 752 sq.m</p>
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <div style="width:100%;height:280px;background:linear-gradient(135deg,#8b6948,#4a3a28);display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width:50%;opacity:0.25;">
+          <rect x="30" y="60" width="140" height="130" fill="none" stroke="white" stroke-width="2"/>
+          <rect x="30" y="20" width="140" height="40" fill="none" stroke="white" stroke-width="2"/>
+          <line x1="30" y1="60" x2="170" y2="60" stroke="white" stroke-width="1"/>
+          <rect x="70" y="110" width="60" height="80" fill="none" stroke="white" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="project-overlay">
+        <span class="project-tag">Architecture</span>
+        <h3 class="project-name">Bungalow Design — Surat</h3>
+        <p class="project-loc">Surat · 602 sq.m</p>
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <div style="width:100%;height:280px;background:linear-gradient(135deg,#c9b99a,#7a6248);display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width:50%;opacity:0.25;">
+          <rect x="20" y="20" width="160" height="160" fill="none" stroke="white" stroke-width="2"/>
+          <line x1="80" y1="20" x2="80" y2="180" stroke="white" stroke-width="1"/>
+          <line x1="20" y1="80" x2="180" y2="80" stroke="white" stroke-width="1"/>
+          <circle cx="100" cy="100" r="30" fill="none" stroke="white" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="project-overlay">
+        <span class="project-tag">Interior Design</span>
+        <h3 class="project-name">3BHK Residential</h3>
+        <p class="project-loc">Thergaon, Pune</p>
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <div style="width:100%;height:280px;background:linear-gradient(135deg,#4a5a7a,#2a3a5a);display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width:50%;opacity:0.25;">
+          <polygon points="100,20 180,180 20,180" fill="none" stroke="white" stroke-width="2"/>
+          <line x1="100" y1="20" x2="100" y2="180" stroke="white" stroke-width="1"/>
+          <line x1="20" y1="180" x2="180" y2="180" stroke="white" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="project-overlay">
+        <span class="project-tag">Green Building</span>
+        <h3 class="project-name">IGBC Green Schools</h3>
+        <p class="project-loc">Amaravati</p>
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <div style="width:100%;height:280px;background:linear-gradient(135deg,#7a5a4a,#4a3028);display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width:50%;opacity:0.25;">
+          <rect x="40" y="40" width="120" height="120" fill="none" stroke="white" stroke-width="2"/>
+          <rect x="60" y="60" width="80" height="80" fill="none" stroke="white" stroke-width="1.5"/>
+          <rect x="80" y="80" width="40" height="40" fill="none" stroke="white" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="project-overlay">
+        <span class="project-tag">Interior Design</span>
+        <h3 class="project-name">Residential Apartment</h3>
+        <p class="project-loc">Nasik</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GREEN BUILDING -->
+<section id="green">
+  <div class="green-inner">
+    <div class="green-content reveal">
+      <p class="section-label">Sustainability</p>
+      <h2 class="section-title">Building a Greener Tomorrow</h2>
+      <p class="section-body">
+        Our IGBC Green Homes Platinum project on NIBM Road, Pune demonstrates measurable impact through integrated green strategies — from solar generation to waste recycling at source.
+      </p>
+      <div class="cert-badges">
+        <span class="cert-badge">IGBC</span>
+        <span class="cert-badge">GRIHA</span>
+        <span class="cert-badge">Green Homes</span>
+        <span class="cert-badge">Green Schools</span>
+      </div>
+    </div>
+    <div class="green-stats reveal">
+      <div class="g-stat">
+        <div class="g-num">16%</div>
+        <div class="g-label">Power from Photovoltaic Panels</div>
+      </div>
+      <div class="g-stat">
+        <div class="g-num">45%</div>
+        <div class="g-label">Water Savings — Dual Fixtures</div>
+      </div>
+      <div class="g-stat">
+        <div class="g-num">94%</div>
+        <div class="g-label">Reduction in Interior Lighting</div>
+      </div>
+      <div class="g-stat">
+        <div class="g-num">100%</div>
+        <div class="g-label">Waste Recycling at Source</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section id="founder">
+  <div class="founder-img-wrap reveal">
+    <div style="width:100%;height:480px;background:linear-gradient(160deg,#d4c4aa,#8b6948,#4a3a28);display:flex;align-items:flex-end;justify-content:center;padding-bottom:30px;">
+      <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg" style="width:40%;opacity:0.2;">
+        <circle cx="100" cy="80" r="50" fill="none" stroke="white" stroke-width="2"/>
+        <path d="M30 300 Q30 180 100 160 Q170 180 170 300" fill="none" stroke="white" stroke-width="2"/>
+      </svg>
+    </div>
+    <div class="founder-frame"></div>
+    <div class="founder-quote">"Architecture is not a simple manipulation of forms, but of space and place — and light plays a decisive role."</div>
+  </div>
+  <div class="founder-info reveal">
+    <p class="section-label">The Mind Behind</p>
+    <h2 class="founder-name">Sailee Raisoni Bafna</h2>
+    <p class="founder-title">Director &amp; Architect · Founder, Sthaapatya Studio</p>
+    <p class="founder-bio">
+      Sailee completed her Bachelor's degree from Allana College of Architecture (Pune University) in 2011. With post-graduation in Environmental Planning, she completed her Masters in 2013 from Dr. B.N. College of Architecture.
+    </p>
+    <p class="founder-bio">
+      She has worked with prestigious architects in sustainable architecture, industrial, residential and commercial buildings. She also had the opportunity to work with the Dy. Chief Architect (2011) of Pune for the redesigning of Ahilyabai Holkar's birth place into a museum.
+    </p>
+    <p class="founder-bio">
+      Her design philosophy hinges on ecological design, modular and incremental approaches, standardization, and flexible & temporal concepts in space design.
+    </p>
+    <ul class="edu-list">
+      <li><span class="edu-year">2011</span> B.Arch — Allana College of Architecture, Pune University</li>
+      <li><span class="edu-year">2013</span> M.Arch (Environmental Planning) — Dr. B.N. College of Architecture</li>
+      <li><span class="edu-year">2020</span> Founded Sthaapatya Studio — Pune & Nashik</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ENQUIRY -->
+<section id="enquiry">
+  <div class="enquiry-inner">
+    <div class="enquiry-form-wrap reveal">
+      <p class="section-label">Let's Connect</p>
+      <h2 class="form-title">Start Your Project</h2>
+      <!-- Google Form embed option OR native form -->
+      <div id="native-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name *</label>
+            <input type="text" id="fname" placeholder="Full name" required>
+          </div>
+          <div class="form-group">
+            <label>Phone Number *</label>
+            <input type="tel" id="fphone" placeholder="+91 XXXXX XXXXX" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="femail" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label>Service Required</label>
+          <select id="fservice">
+            <option value="">Select a service…</option>
+            <option>Architectural Design</option>
+            <option>Interior Design</option>
+            <option>Green Building Certification</option>
+            <option>Complete Project Execution</option>
+            <option>Multifunctional Furniture</option>
+            <option>Other / Consultation</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>City / Location</label>
+          <input type="text" id="fcity" placeholder="Pune, Nashik, etc.">
+        </div>
+        <div class="form-group">
+          <label>Tell Us About Your Project</label>
+          <textarea id="fmsg" placeholder="Brief description of your project, area, budget range…"></textarea>
+        </div>
+        <button class="btn-primary" onclick="submitForm()" style="width:100%;font-family:'Jost',sans-serif;">Send Enquiry →</button>
+        <div class="form-success" id="form-success">✓ Thank you! We'll get back to you within 24 hours.</div>
+      </div>
+      <p style="font-size:0.75rem;color:var(--earth);margin-top:1.5rem;text-align:center;">
+        Or fill our <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_EXAMPLE/viewform" target="_blank" style="color:var(--accent);">Google Form</a> for detailed enquiries
+      </p>
+    </div>
+    <div class="contact-info reveal">
+      <p class="section-label">Contact Details</p>
+      <h2 class="section-title" style="margin-bottom:2rem;">We'd love to<br>hear from you.</h2>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-value"><a href="tel:+918983910879">+91 89839 10879</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value"><a href="mailto:projects.sthaapatya@gmail.com">projects.sthaapatya@gmail.com</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Offices</div>
+          <div class="contact-value">Pune &amp; Nashik, Maharashtra</div>
+          <a href="https://maps.google.com/?q=Sthaapatya+Studio+Pune" target="_blank" class="map-link">View on Maps →</a>
+        </div>
+      </div>
+      <a href="https://wa.me/918983910879?text=Hello!%20I%20am%20interested%20in%20your%20architecture%20and%20interior%20design%20services.%20Could%20you%20please%20share%20more%20details?" target="_blank" class="whatsapp-btn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Sthaapatya Studio</div>
+      <p class="footer-tagline">Architecture, Interiors & Environmental Consultancy.<br>Building a society that not only thinks Green — but lives Green.</p>
+      <p style="font-size:0.78rem;">© 2024 Sthaapatya Studio. All rights reserved.</p>
+    </div>
+    <div>
+      <p class="footer-h">Services</p>
+      <ul class="footer-links">
+        <li><a href="#services">Architectural Design</a></li>
+        <li><a href="#services">Interior Design</a></li>
+        <li><a href="#green">Green Building</a></li>
+        <li><a href="#services">Project Execution</a></li>
+        <li><a href="#services">Multifunctional Furniture</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-h">Quick Links</p>
+      <ul class="footer-links">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#founder">Founder</a></li>
+        <li><a href="#enquiry">Contact Us</a></li>
+        <li><a href="https://wa.me/918983910879" target="_blank">WhatsApp Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">Designed with 🌿 by Sthaapatya Studio · Pune &amp; Nashik</p>
+    <div class="footer-social">
+      <a href="mailto:projects.sthaapatya@gmail.com" class="social-link" title="Email">✉</a>
+      <a href="https://wa.me/918983910879" class="social-link" target="_blank" title="WhatsApp">W</a>
+      <a href="tel:+918983910879" class="social-link" title="Call">☎</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/918983910879?text=Hello!%20I%20am%20interested%20in%20your%20architecture%20and%20interior%20design%20services." target="_blank" class="wa-float" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+  // Hamburger menu
+  const ham = document.getElementById('hamburger');
+  const navlinks = document.getElementById('navlinks');
+  ham.addEventListener('click', () => navlinks.classList.toggle('open'));
+  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('open')));
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+
+  // Form submit (opens WhatsApp or shows success)
+  function submitForm() {
+    const name = document.getElementById('fname').value;
+    const phone = document.getElementById('fphone').value;
+    const service = document.getElementById('fservice').value;
+    const city = document.getElementById('fcity').value;
+    const msg = document.getElementById('fmsg').value;
+    if (!name || !phone) { alert('Please fill in your name and phone number.'); return; }
+    const waMsg = encodeURIComponent(
+      `Hello Sthaapatya Studio!\n\nName: ${name}\nPhone: ${phone}\nService: ${service || 'Not specified'}\nCity: ${city || 'Not specified'}\nMessage: ${msg || 'N/A'}`
+    );
+    window.open(`https://wa.me/918983910879?text=${waMsg}`, '_blank');
+    document.getElementById('form-success').style.display = 'block';
+    setTimeout(() => document.getElementById('form-success').style.display = 'none', 5000);
+  }
+
+  // Navbar shadow on scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.boxShadow =
+      window.scrollY > 50 ? '0 2px 20px rgba(0,0,0,0.08)' : 'none';
+  });
+</script>
+</body>
+</html>
